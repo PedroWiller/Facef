@@ -68,3 +68,69 @@ SELECT 	sobreNome "Sobrenome do Cliente",
 	cidade "Cidade de Cliente"
      FROM tb_Cliente
      WHERE cidade IN ('Sorocaba', 'São Paulo');
+
+SELECT 	id_Cliente,
+	      nome
+  FROM tb_Cliente
+  LIMIT 5
+
+SELECT 	id_Cliente,
+	      nome
+  FROM tb_Cliente
+  LIMIT 8 OFFSET 2
+
+SELECT 	id_Cliente,
+	      nome
+  FROM tb_Cliente
+  OFFSET 12
+
+CREATE TABLE tb_Teste(
+coluna_a integer);
+
+INSERT INTO  tb_Teste
+VALUES (0), (1), (null);
+
+SELECT *
+  FROM tb_Teste
+  WHERE coluna_a = 1;
+
+SELECT *
+  FROM tb_Teste
+  WHERE coluna_a = 0;
+
+SELECT *
+  FROM tb_Teste
+  WHERE coluna_a IS NULL;
+
+SELECT *
+  FROM tb_Teste
+  WHERE coluna_a IS NOT NULL;
+
+SELECT COALESCE(coluna_a, 0)
+  FROM tb_Teste
+  WHERE coluna_a = 1
+
+--mostrar todas configuracões do pgadmin
+SHOW ALL
+
+
+SELECT CAST('2016/06/01' AS DATE);
+
+SELECT CAST('08/12/2016' AS DATE);
+SELECT CAST('08/12/2016' AS TIMESTAMP);
+
+--selecionar data do sistema
+SELECT NOW();
+
+SELECT *
+    FROM tb_Pedido
+    WHERE date_part('month', dt_compra) = 9;
+
+SELECT *
+    FROM tb_Pedido
+    WHERE dt_compra >= CAST('21 07 2013' AS DATE);
+
+SELECT NOW(), current_timestamp
+
+SELECT dt_entrega - dt_compra AS Intervalo
+    FROM tb_pedido

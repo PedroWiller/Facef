@@ -1,0 +1,50 @@
+﻿SELECT 	c.*, 
+	p.*
+    FROM tb_Cliente c
+    INNER JOIN tb_Pedido p
+	ON c.id_Cliente = p.id_Cliente
+    WHERE nome = 'Anna' AND sobrenome = 'Kelly';
+
+SELECT * 
+    FROM tb_Pedido
+    WHERE id_Cliente = 8;
+--junção
+SELECT 	c.Nome,
+	p.dt_Compra
+    FROM tb_Cliente AS c, tb_Pedido AS p
+    WHERE c.id_Cliente = p.id_Cliente
+      AND c.id_Cliente = 8;
+
+SELECT 	c.Nome,
+	p.dt_Compra
+    FROM tb_Cliente AS c, tb_Pedido AS p
+    WHERE c.id_Cliente = p.id_Cliente
+      AND c.nome = 'Agnaldo'
+      AND c.sobrenome = 'Aparecido';
+
+SELECT 	c.Nome,
+	p.dt_Compra
+    FROM tb_Cliente AS c
+    INNER JOIN tb_Pedido p
+	ON c.id_Cliente =  p.id_Cliente
+    WHERE c.id_Cliente = p.id_Cliente
+      AND c.nome = 'Agnaldo'
+      AND c.sobrenome = 'Aparecido';
+
+SELECT 	ds_item,
+	preco_custo,
+	codigo_barras
+    FROM tb_item it, tb_codigo_barras cb
+    WHERE cb.id_item = it.id_item
+    ORDER BY 2;
+
+ 
+SELECT 	ds_item,
+	preco_custo,
+	codigo_barras
+    FROM tb_item i
+    INNER JOIN tb_codigo_barras cb
+	ON i.id_item =  cb.id_item
+    ORDER BY 2;
+
+ 
