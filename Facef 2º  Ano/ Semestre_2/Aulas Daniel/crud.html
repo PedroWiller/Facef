@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html data-ng-app="CrudSemDb">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="angular.min.js"></script>
+  </head>
+  <body data-ng-controller="controlador">
+    <h1>{{titulo}}</h1>
+    <div data-ng-controller="controlador">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Codigo
+            </th>
+            <th>
+              Nome
+            </th>
+            <th>
+              Email
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="listas in lista">
+            <td>
+              {{listas.codigo}}
+            </td>
+            <td>
+              {{listas.name}}
+            </td>
+            <td>
+              {{listas.email}}
+            </td>
+            <td>
+              <a href="#" ng-click="remover(listas.codigo)">X</a>
+            </td>
+            <td>
+              <a href="#" ng-click="remover(listas.codigo)">?</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <fieldset style="margin-top: 20px; width: 200px;">Dados cadastro
+        <form >
+          <label for="">Nome</label>
+          <input type="text" name="nome" name ="codigo"ng-model="codigo">
+          <label for="">Nome</label>
+          <input type="text" name="nome" ng-model="nome">
+          <label for="">Email</label>
+          <input type="text" name="email" ng-model="email">
+          <input type="submit" name="button" ng-click="inserir()"></input>
+        </form>
+      </fieldset>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  angular.module('CrudSemDb', [])
+    .controller('controlador', controlador);
+  function controlador($scope) {
+    $scope.titulo = 'Pedro Willer';
+    $scope.lista = [
+      {codigo: 1, name: 'Pedro', email: 'pedro@figueredo.com'},
+      {codigo: 2, name: 'Pedro', email: 'pedro@figueredo.com'},
+      {codigo: 3, name: 'Pedro', email: 'pedro@figueredo.com'},
+      {codigo: 4, name: 'Pedro', email: 'pedro@figueredo.com'},
+      {codigo: 5, name: 'Pedro', email: 'pedro@figueredo.com'},
+      {codigo: 6, name: 'Pedro', email: null}
+    ];
+
+    $scope.inserir =  function() {
+      $scope.lista.push({
+        codigo: $scope.codigo,
+        name: $scope.nome,
+        email: $scope.email
+      });
+    }
+
+    $scope.remover = function(codigo){
+      if(!confirm("Deseja realmente remover?"))
+          return;
+
+      $scope.lista.splice(posicaoIndex(codigo), 1);
+    };
+
+    function posicaoIndex(codigo){
+      for(var i = 0;$scope.lista.length;i++){
+        if($scope.lista[i].codigo == codigo)
+          return i;
+      }
+        return 0;
+    }
+
+    var remover = function functionName(codigo) {
+        if(!posicaoIndex(codigo))
+            
+    }
+  }
+</script>

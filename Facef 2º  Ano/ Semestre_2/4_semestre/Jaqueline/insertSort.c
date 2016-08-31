@@ -1,9 +1,12 @@
-
+#include<time.h>
 #include <stdio.h>
+#define MAX 20000
 
-void InsertSort(int arr[], int n){
+void InsertSort(int arr[], int qtd){
+	float start, stop;
 	int i, aux, j;
-	for(i=1;i<n;i++){
+	start = clock();
+	for(i=1;i<qtd;i++){
 		aux = arr[i];
 		j = i-1;
 		while(j>=0 && arr[j]>aux){
@@ -12,14 +15,20 @@ void InsertSort(int arr[], int n){
 		}
 		arr[j+1]=aux;
 	}
+	stop = clock();
+	float resultado = (stop - start)/1000000;
+	printf("%6.3f", resultado);
+	printf("\n");
 }
 
-void SelectSort(int arr[], int n){
+void SelectSort(int arr[], int qtd){
+	float start, stop;
   int i, aux, j;
   int menor;
-  for(i = 0;i<n;i++){
+	start = clock();
+  for(i = 0;i<qtd;i++){
     menor = i;
-    for(j=i+1;j<n;j++){
+    for(j=i+1;j<qtd;j++){
       if(arr[j] < arr[menor])
         menor = j;
     }
@@ -27,14 +36,20 @@ void SelectSort(int arr[], int n){
     arr[i] = arr[menor];
     arr[menor] = aux;
   }
+	stop = clock();
+	float resultado = (stop - start)/1000000;
+	printf("%6.3f", resultado);
+	printf("\n");
 }
 
-void OrderAsc(int vet[], int n){
+void OrderAsc(int vet[], int qtd){
   int i;
   int j;
   int aux;
-    for(i = 0;i<n;i++){
-      for(j = 0; j< n -1;j++){
+	float start, stop;
+	start = clock();
+    for(i = 0;i<qtd;i++){
+      for(j = 0; j< qtd -1;j++){
           if(vet[j]> vet[j+1]){
             aux = vet[j];
             vet[j] = vet[j+1];
@@ -42,21 +57,71 @@ void OrderAsc(int vet[], int n){
           }
       }
     }
+		stop = clock();
+		float resultado = ((stop - start)/1000000);
+		printf("%6.3f", resultado);
+		printf("\n");
 }
 
-void Puts(int arr[], int n){
+void Puts(int arr[]){
    int i;
-   for (i=0; i < n; i++)
-       printf("%d ", arr[i]);
+   for (i=0; i < qtd; i++)
+       //printf("%d ", arr[i]);
    printf("\n");
 }
 
+void insertArray(int arr[], int qtd){
+	int i;
+	int cont = 0;
+	for(i=0;i<qtd;i++){
+		arr[i] = rand() % qtd;
+		cont++;
+	}
+	printf("quantidade %i\n", cont);
+}
+/*
 int main(){
-    int arr[] = {12, 11, 13, 5, 6, 2, 14, 205, 192, 22};
-    int n = sizeof(arr)/sizeof(arr[0]);
+    int arr[MAX];
+		int ops;
+		printf("\n\n");
 
-    SelectSort(arr, n);
-    Puts(arr, n);
+		insertArray(arr);
+		printf("SelectSort\n");
+    SelectSort(arr);
+		insertArray(arr);
+		printf("InsertSort\n");
+		InsertSort(arr);
+		insertArray(arr);
+		printf("BubbleSort\n");
+		OrderAsc(arr);
+*/
+int main(){
+	int opcao;
 
-    return 0;
+	do{
+			getch();
+    	system("cls");
+    	printf("|---------------------------------------------------------------|");
+			printf("\n|00. Sair");
+			printf("\n|---------------------------------------------------------------|");
+			printf("\n|--------------------------------------------------------------: ");
+			scanf("%i", &opcao);
+			printf("\n");
+
+		switch(opcao){
+				case 1: //inserir
+				int qtd = 100;
+				int arr[100];
+				SelectSort(arr, qtd);
+				InsertSort(arr, qtd);
+				OrderAsc(arr, qtd);
+					break;
+				case 0: //sair
+					printf("Ate mais!");
+					break;
+				default:printf("Valor invalido");
+			}
+	}while(opcao !=0);
+	getch();
+	return 0;
 }

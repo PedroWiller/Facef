@@ -1,0 +1,31 @@
+﻿CREATE DATABASE AULA_03
+TEMPLATE = TEMPLATE0
+ENCODING = 'UTF-8'
+CONNECTION LIMIT -1
+
+
+CREATE TABLE tb_empregado(
+id_mepregado INT, 
+id_funcao INT,
+id_escolaridade INT,
+id_gerente INT, 
+nm_empregado VARCHAR(60),
+cpf VARCHAR (11),
+rg VARCHAR(10),
+telefone VARCHAR(10),
+celular VARCHAR(11),
+fg_ativo BOOL
+);
+
+CREATE TABLE tb_escolaridade(
+id_escolaridade INT,
+ds_escolaridade VARCHAR(60),
+fg_ativo BOOL
+);
+
+CREATE TABLE tb_funcao(
+id_funcao INT,
+ds_funcao VARCHAR(60),
+salario NUMERIC,
+fg_ativo BOOL
+);

@@ -47,4 +47,33 @@ SELECT 	ds_item,
 	ON i.id_item =  cb.id_item
     ORDER BY 2;
 
+SELECT 	c.nome,
+	p.dt_compra
+    FROM tb_Cliente c, tb_Pedido p
+    WHERE c.id_Cliente =  p.id_Cliente
+      AND c.nome = 'Anna'
+      AND c.sobrenome = 'Kelly';
+
+SELECT 	c.nome,
+	p.dt_compra,
+	ip.id_item,
+	ip.quantidade
+    FROM tb_Cliente c, tb_Pedido p, tb_item_pedido ip
+    WHERE c.id_Cliente = p.id_Cliente
+	AND p.id_Pedido = ip.id_Pedido
+	AND c.nome = 'Anna'
+	AND c.sobrenome = 'Kelly';
+
+SELECT 	c.nome,
+	p.dt_compra,
+	ip.id_item,
+	ip.quantidade
+    FROM tb_Cliente c
+        INNER JOIN tb_Pedido p
+	    ON c.id_Cliente = p.id_Cliente
+        INNER JOIN tb_item_pedido ip
+	    ON p.id_Pedido = ip.id_Pedido
+    WHERE c.nome = 'Anna'
+        AND c.sobrenome = 'Kelly';
+
  

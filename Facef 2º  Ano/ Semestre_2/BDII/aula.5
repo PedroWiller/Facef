@@ -1,0 +1,126 @@
+﻿select * from tb_cliente
+
+INSERT INTO tb_cliente
+	VALUES(16, 'Sr', 'Sidney', 'Magal', 'Rua teste', 71, NULL, '13400 550', 'Cravinhos', 'SP', '4939 2386', '8092 6832', 1)
+
+INSERT INTO tb_cliente
+	VALUES(17, 'Sra', 'Joana', 'D''arc', 'Rua Execucao Aurora', 10, NULL, '40013 890', 'Ourinhos', 'SP', '4939 2386', '8092 6832', 1)	
+
+INSERT INTO tb_cliente(id_cliente, titulo, nome, sobrenome, endereco, numero, cep, cidade, estado, fone_fixo, fone_movel, fg_ativo)
+	VALUES(18, 'Sra', 'Sara', 'Martins', 'Rua Piracicaba', 12, '40013 890', 'Ourinhos', 'SP', '4939 2386', '8092 6832', 1)
+
+
+INSERT INTO tb_cliente(id_cliente, titulo, nome, sobrenome, endereco, numero, cep, cidade, estado, fone_fixo, fone_movel, fg_ativo)
+	VALUES(19, 'Sra', 'Sara', 'Connor', 'Rua End_19', 12, '40013 890', 'Ourinhos', 'SP', '4939 2386', '8092 6832', 1),
+	      (20, 'Sra', 'Nome_20', 'Nome_20', 'Rua End_20', 12, '40013 890', 'Ourinhos', 'SP', '4939 2386', '8092 6832', 1)
+
+CREATE SEQUENCE sq_teste
+MINVALUE 1
+INCREMENT 1
+START 1
+NO CYCLE; --default
+
+CREATE TABLE tb_pratica_sequencia(
+coluna_a INTEGER DEFAULT NEXTVAL('sq_teste'),
+coluna_b VARCHAR(50),
+coluna_C VARCHAR(50),
+PRIMARY KEY(coluna_a));
+
+INSERT INTO tb_pratica_sequencia(coluna_a, coluna_b, coluna_c)
+	VALUES	(1, 'ExemploA', 'Exemplo A'),
+		(2, 'Exemplob', 'Exemplo b'),
+		(3, 'Exemploc', 'Exemplo c')
+
+
+INSERT INTO tb_pratica_sequencia(coluna_b, coluna_c)
+	VALUES	('ExemploD', 'Exemplo D'),
+		('ExemploE', 'Exemplo E'),
+		('ExemploF', 'Exemplo F')
+
+SELECT CURRVAL ('sq_teste');		
+SELECT * FROM sq_teste
+SELECT NEXTVAL('sq_teste');
+SELECT SETVAL('sq_teste', 100);
+
+INSERT INTO tb_pratica_sequencia(coluna_b, coluna_c)
+	VALUES	('ExemploD', 'Exemplo D');
+
+select * from tb_pratica_sequencia	
+
+INSERT  INTO tb_cliente(id_cliente, titulo, nome, sobrenome, endereco, numero, cep, complemento, cidade, estado, fone_fixo, fone_movel, fg_ativo)
+	VALUES(21, 'Sr', 'teste NULL', 'Silva', 'Rua Teste NULL', 's/n', '40013 980', NULL, 'Cajuru', 'SP', '84938 93039', '0594 9403', 1)  
+
+SELECT * FROM tb_cliente
+
+CREATE TABLE tb_valor_nulo(
+id	SERIAL,
+ds_a	VARCHAR CONSTRAINT nn_ds_a NOT NULL,
+ds_b 	VARCHAR NULL,
+PRIMARY KEY (id));
+
+
+INSERT INTO tb_valor_nulo(d_a, ds_b)
+	VALUES(NULL, 'testando...');
+
+INSERT INTO tb_valor_nulo(ds_b)
+	VALUES('testando...');
+-- inserir todos os dados do documento para o banco de dados
+COPY tb_cliente
+FROM '/home/pedro/arquivo/cliente.txt'
+USING DELIMITERS ',';
+
+CREATE TABLE tb_backup_cliente(
+id_cliente INT,
+titulo CHAR(4),
+nome VARCHAR(32) NOT NULL,
+sobrenome VARCHAR(32) NOT NULL,
+endereco VARCHAR(62) NOT NULL, 
+numero VARCHAR(5) NOT NULL, 
+complemento VARCHAR(62),
+ceo VARCHAR(10),
+cidade VARCHAR(62) NOT  NULL, 
+estado CHAR(2),
+fone_fixo VARCHAR(15) NOT  NULL,
+fone_movel VARCHAR(15) NOT NULL,
+fg_ativo INT,
+PRIMARY KEY (id_cliente));
+
+INSERT INTO tb_backup_cliente
+SELECT *
+FROM tb_cliente
+WHERE nome IS NOT NULL
+
+SELECT *
+INTO tmp
+FROM tb_cliente
+WHERE nome IS NOT NULL
+SELECT * FROM tmp
+DROP TABLE tmp
+
+UPDATE tb_cliente 
+	SET titulo = 'sra'
+WHERE id_cliente = 21;
+
+
+SELECT * FROM tb_backup_cliente
+
+UPDATE tb_backup_cliente
+	SET fg_ativo = 99;
+
+UPDATE tb_backup_cliente
+	SET nome = tb_cliente.nome
+FROM tb_cliente
+WHERE tb_cliente.id_cliente = 9
+AND tb_backup_cliente.id_cliente = 10; 
+
+BEGIN WORK;
+DELETE 
+FROM tb_backup_cliente;
+
+SELECT * FROM tb_backup_cliente;
+
+ROLLBACK;
+
+--mais rapido, é DDL, ele Dropa a tabela e cria uma nova vazia 
+TRUNCATE 
+TABLE tb_backup_cliente;

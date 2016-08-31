@@ -1,0 +1,2 @@
+SQL ANSI => utillizaçoes de clausulas ON DELETE, ON UPDATE para cordenar funcões de cascate
+  CHECK => 

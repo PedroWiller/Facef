@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html data-ng-app="CrudSemDb">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="angular.min.js"></script>
+  </head>
+  <body data-ng-controller="controlador">
+    <h1>{{titulo}}</h1>
+    <div data-ng-controller="controlador">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Nome
+            </th>
+            <th>
+              Email
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="listas in lista">
+            <td>
+              {{listas.name}}
+            </td>
+            <td>
+              {{listas.email}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <input type="text" name="name" value="">
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  angular.module('CrudSemDb', [])
+    .controller('controlador', controlador);
+  function controlador($scope) {
+    $scope.titulo = 'Pedro Willer';
+    $scope.lista = [
+      {name: 'Pedro', email: 'pedro@figueredo.com'},
+      {name: 'Pedro', email: 'pedro@figueredo.com'},
+      {name: 'Pedro', email: 'pedro@figueredo.com'},
+      {name: 'Pedro', email: 'pedro@figueredo.com'},
+      {name: 'Pedro', email: 'pedro@figueredo.com'},
+      {name: 'Pedro', email: null}
+    ];
+  }
+</script>

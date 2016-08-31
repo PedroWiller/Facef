@@ -1,0 +1,26 @@
+﻿CREATE TABLE tb_funcionario(
+    id_funcionario INT,
+    id_funcao INT,
+    id_escolariadade INT,
+    nome VARCHAR(60),
+    cpf VARCHAR (11),
+    rg VARCHAR (10),
+    fg_ativo INT
+    CONSTRAINT pk_funcionario PRIMARY KEY (id_funcionario)
+);
+
+CREATE TABLE tb_escolaridade(
+    id_escolaridade INT 
+    descricao VARCHAR(60),
+    fg_ativo INT
+    CONSTRAINT pk_id_escolaridade PRIMARY KEY(id_escolaridade)
+);
+
+CREATE TABLE tb_funcao(
+   id_funcao INT,
+   decricao VARCHAR(60),
+   salario NUMERIC (7,2),
+   fg_ativo INT
+   CONSTRAINT pk_id_funcao PRIMARY KEY (id_funcao)
+);
+
