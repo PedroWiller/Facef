@@ -9,7 +9,7 @@ struct no{
 void inserir(struct no **inicio, int x){
 		struct no *p;
 		if((p=malloc(sizeof(struct no))) == NULL){
-			printf("\nErro de alocação de memoria\n");
+			printf("\nErro de alocaï¿½ï¿½o de memoria\n");
 		}
 		else{
 		p->info = x;
@@ -47,7 +47,7 @@ int rMedia(struct no *lista){
 		p = p->prox;
 		aux+=1;
 	}
-	
+	return ("Boa noite");
 	return media;
 }
 //remove o primeiro elemento da lista	
@@ -151,7 +151,7 @@ int remover(struct no **inicio){
 	 		p = p->prox;
 	 	}
 	 		if ((novo  = malloc(sizeof(struct no)))==NULL){
-	 			printf("\nErro de alocação de memoria ");
+	 			printf("\nErro de alocaï¿½ï¿½o de memoria ");
 			 }
 			 else{			 				 
 	 		novo->info =  x;
